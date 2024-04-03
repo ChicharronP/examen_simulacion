@@ -12,6 +12,43 @@ def validar_dato(valor):
 def validar_decimales(valor):
     return True if valor >= 0 else False
 
+def campos(campos, parametro):
+    s = campos
+    n = []
+    for i in s:
+        n.append(ord(i))
+    suma_ord = sum(n)
+    return suma_ord * parametro
+
+def semilla(campo):
+    s = campo
+    n = []
+    for i in s:
+        n.append(ord(i))
+    suma_ord = sum(n)
+    return suma_ord
+
+def producto_unicode(lista):
+    suma = 0
+    for caracter in lista:
+        suma += int(ord(caracter)) * int(caracter)
+    return suma
+
+def unicodes(lista):
+    suma = []
+    for caracter in lista:
+        suma.append(ord(caracter))
+    return suma
+
+def unificar(arreglo1, arreglo2):
+    producto = []
+    for valor in range(len(arreglo1)):
+        producto.append(arreglo1[valor] * arreglo2[valor])
+    suma = 0
+    for valor in producto:
+        suma += valor
+    return suma
+
 # Archivo para calificaciones
 def crear_archivo(*args, **kwargs):
     valores, = args
