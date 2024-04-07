@@ -142,9 +142,7 @@ class Simulacion9(App):
            if caracter in vocales:
                suma2 += int(ord(caracter))
        # Suma de todos los valores del correo
-       mod = 0
-       for caracter in correo_usuario:
-           mod += int(ord(caracter))
+       mod = len(correo_usuario)
        # Multiplicación del usuario  y dominio
        usr_dom = suma1 * suma2
        return usr_dom % mod
@@ -217,6 +215,7 @@ class Simulacion9(App):
         self.tarjeta.set(tarjeta)
 
     def simula(self):
+        valores = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
         bandera = 0
         if not self.fecha.get():
             messagebox.showerror("Error de fecha",
@@ -225,12 +224,16 @@ class Simulacion9(App):
             bandera += 1
 
         if not self.correo.get():
-            messagebox.showerror("Error de apellido",
-                                 "Se debe de ingresar un apellido")
+            messagebox.showerror("Error de Correo",
+                                 "Se debe de ingresar un correo electronico")
         else:
-            texto = self.correo.get().lower()
-            self.correo.set(texto)
-            bandera += 1
+            if "@" and "." not in self.correo.get():
+                messagebox.showerror("Error de correo",
+                                     "Ingrese correo de manera correcta "'usuario@dominio.extension'"")
+            else:
+                texto = self.correo.get().lower()
+                self.correo.set(texto)
+                bandera += 1
 
         if not self.celular.get():
             messagebox.showerror("Error de celular", 
@@ -248,7 +251,7 @@ class Simulacion9(App):
 
 
 if __name__ == '__main__':
-    titulo = "tarjeta de credito"
+    titulo = "Numero de tarjeta"
     size = "270x530"
     app = Simulacion9(titulo, size)
     app.mainloop()

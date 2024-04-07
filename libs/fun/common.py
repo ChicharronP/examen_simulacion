@@ -40,6 +40,12 @@ def unicodes(lista):
         suma.append(ord(caracter))
     return suma
 
+def unicode_nombre(nombre):
+    suma = 0
+    for char in nombre:
+        suma += ord(char)
+    return suma
+
 def unificar(arreglo1, arreglo2):
     producto = []
     for valor in range(len(arreglo1)):

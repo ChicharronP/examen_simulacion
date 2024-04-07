@@ -10,7 +10,6 @@ import csv
 import argparse
 import sys
 from enum import Enum
-from libs.fun.common import crear_archivo
 from libs.fun.common import campos, semilla
 
 
@@ -98,7 +97,6 @@ class GenerarAleatorios(Aleatorios):
             temp = (nuevo_c * pseudoAleatorios[i-1] + nuevo_d) % self.modulo
             pseudoAleatorios.append(temp)
         pseudoAleatorios.pop(0)
-        crear_archivo(pseudoAleatorios)
         return pseudoAleatorios
 
     def primer_campo(self):
@@ -136,7 +134,7 @@ class GenerarAleatorios(Aleatorios):
                 campo2_final.append(str(primer_digito)[0])
             else:
                 suma_digitos = sum(int(digito) for digito in elemento)
-                consonante_unicode = chr(suma_digitos + ord("@"))
+                consonante_unicode = chr(suma_digitos + ord("`"))
                 campo2_final.append(consonante_unicode)
 
         # Unir los resultados en una sola cadena
@@ -163,7 +161,6 @@ def main(**kwargs):
     campo2 = kwargs.get('d', "J6UP8")
     campo3 = kwargs.get('e', "488T3")
     iniciar = GenerarAleatorios(parametro_a, parametro_b, modulo, campo1, campo2, campo3, **kwargs)
-    archivo = crear_archivo(iniciar.generar_claves())
     print(f"La clave final del producto es: {iniciar.primer_campo()[:5]}-{campo1}-{campo2}-"
           f"{campo3}-{iniciar.ultimo_campo()[-5:]} ")
 
