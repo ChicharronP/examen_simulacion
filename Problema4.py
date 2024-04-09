@@ -108,7 +108,6 @@ class Problema4(App):
         for i in range(1, (self.preguntas * 5) + 1):
             temp = (y*x[i-1]) % mod
             x.append(temp)
-        x.pop(0)
         # Se elimina al elemento mayor
         max_a = x.index(max(x))
         x.pop(max_a)
@@ -128,11 +127,13 @@ class Problema4(App):
         z1 = self.generadorAleatorios(z0, 170, 30323)
 
         preguntas = []
-        for i in range(1, ((self.preguntas) * 5)):
+        for i in range(1, len(x1)):
             u = ((x1[i-1]/30269 + y1[i-1]/30307 + z1[i-1]/30323) % 1)
+            print(i-1)
+            print(u)
             preguntas.append(u)
         print(preguntas)
-        return(preguntas)
+        return preguntas
       
     def valores_intervalo(self):
         aletorios = self.preguntas_aleatorias()

@@ -111,38 +111,21 @@ class Simulacion9(App):
         return suma
         
     def correo_usuarios(self):
-       consonantes = ('b', 'c', 'd', 'f', 'g', 'h',
-                      'j', 'k', 'l', 'm', 'n', 'p',
-                      'q', 'r', 's', 't', 'v', 'w', 
-                      'x', 'y', 'z', '1', '2', '3', 
-                      '4', '5', '6', '7', '8', '9')
-       vocales = ('a', 'e', 'i', 'o', 'u')
-
+       vocales = ('a', 'e', 'i', 'o', 'u',
+                  'á', 'é', 'í', 'ó', 'ú')
        correo = self.correo.get()
-       correo_usuario = list(correo)
-       usuario = []
-       # se consiguen los caracteres antes del arroba
-       for caracter in correo_usuario:
-           if caracter == '@':
-               break
-           usuario.append(caracter)
-        # Se consiguen los valores despues del arroba
-       dominio = []
-       indice_arroba = correo_usuario.index('@')
-       for caracter in correo_usuario[indice_arroba + 1:]:
-           dominio.append(caracter)
-       # Se suma los valores unicode de las consonantes
+       # Se consigue el usuario y el dominio
+       usuario, dominio = correo.split('@')
+       # Se suma los valores unicode de las consonantes y vocales
        suma1 = 0
-       for caracter in usuario:
-           if caracter in consonantes:
-               suma1 += int(ord(caracter))
-       # Se suman los valores unicode de las vocales
        suma2 = 0
+       for caracter in usuario:
+           if caracter not in vocales:
+               suma1 += int(ord(caracter))
        for caracter in dominio:
            if caracter in vocales:
                suma2 += int(ord(caracter))
-       # Suma de todos los valores del correo
-       mod = len(correo_usuario)
+       mod = len(correo)
        # Multiplicación del usuario  y dominio
        usr_dom = suma1 * suma2
        return usr_dom % mod
@@ -163,18 +146,8 @@ class Simulacion9(App):
 
     def monto_solicitado(self):
         monto = self.monto.get()
-        monto_lista = list(monto)
         # Se consiguen los digitos enteros
-        enteros = []
-        for digito in monto_lista:
-            if digito == ".":
-                break
-            enteros.append(digito)
-        # Se consiguen los centavos
-        centavos = []
-        indice_arroba = monto_lista.index('.')
-        for caracter in monto_lista[indice_arroba + 1:]:
-            centavos.append(caracter)
+        enteros, centavos = monto.split(".")
         # Suma de los enteras
         suma = producto_unicode(enteros)
         # suma de los centavos
