@@ -119,7 +119,7 @@ class Problema4(App):
         print(x0)
         y0 = unicode_nombre(self.materia.get())
         print(y0)
-        z0 = int(ord(unidad)) * int(unidad)
+        z0 = ord(unidad) * int(unidad)
         print(z0)
         # se generan los aleatorios
         x1 = self.generadorAleatorios(x0, 171, 30269)
@@ -127,9 +127,10 @@ class Problema4(App):
         z1 = self.generadorAleatorios(z0, 170, 30323)
 
         preguntas = []
-        for i in range(1, len(x1)):
-            u = ((x1[i-1]/30269 + y1[i-1]/30307 + z1[i-1]/30323) % 1)
-            print(i-1)
+        for i in range(len(x1)):
+            print(len(x1))
+            u = ((x1[i]/30269 + y1[i]/30307 + z1[i]/30323) % 1)
+            print(i)
             print(u)
             preguntas.append(u)
         print(preguntas)
